@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Survey Form</title>
+    <link rel="stylesheet" href="Surveyform.css">
+</head>
+
+<body>
+    <div class="cont">
+        <h2>Customer Survey Form</h2>
+        <form id="surveyForm">
+            <div class="nameInput">
+                <div class="name">
+
+         
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                </div>
+                <div class="name">
+
+                 
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                </div>
+            </div>
+
+    
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="country">Country:</label>
+
+  
+            <select id="country" name="country" required>
+                <option value="" disabled selected>Select a country</option>
+
+         
+                <option value="us">India</option>
+                <option value="us">United States</option>
+                <option value="ca">Canada</option>
+                <option value="uk">United Kingdom</option>
+            </select>
+
+      
+            <label>Gender:</label>
+            <input type="checkbox" id="male" name="gend" value="male" class="selection">
+            <label for="male">Male</label>
+
+            <input type="checkbox" id="female" name="gend" value="female" class="selection">
+            <label for="female">Female</label>
+
+            <input type="checkbox" id="other" name="gend" value="other" class="selection">
+            <label for="other">Other</label>
+
+            <label for="profession" style="display: flex;">Profession:</label>
+            <input type="text" id="profession" name="profession" required>
+
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="mobile">Mobile Number:</label>
+            <input type="tel" id="mobile" name="mobile" required>
+
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset">
+        </form>
+    </div>
+    </div>
+    <footer>
+        <p class="footertext">&copy; 2023 Customer Survey Form. All Rights Reserved | Design by <a href=""
+                class="link">W3Layouts</a></p>
+    </footer>
+    
+      <!--checkbox for gender only one select at one time -->
+      
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+
+         $('.selection').click(function() {
+              $('.selection').not(this).prop('checked', false);
+         });
+
+    });
+    </script>
+
+    <script>
+      
+            
+        const form = document.getElementById("surveyForm");
+        const popup = document.getElementById("popup");
+        const popupData = document.getElementById("popupData");
+        const popupClose = document.getElementById("popupClose");
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+   
+            if (form.checkValidity()) {
+
+                const formData = new FormData(form);
+                let content = "";
+                for (const pair of formData.entries()) {
+                    content += `<strong>${pair[0]}:</strong> ${pair[1]}<br>`;
+                }
+                popupData.innerHTML = content;
+                popup.style.display = "flex";
+                form.reset();
+            } else {
+                alert("Please fill in all required fields.");
+            }
+        });
+
+        popupClose.addEventListener("click", function () {
+            popup.style.display = "none";
+        });
+    </script>
+</body>
+
+</html>
